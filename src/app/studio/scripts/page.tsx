@@ -32,7 +32,6 @@ function ScriptsInner() {
     ]);
     setNiches(n.niches || []);
     setScripts(s.scripts || []);
-    if (!nicheId && n.niches?.[0]?.id) setNicheId(n.niches[0].id);
   }
 
   useEffect(() => {

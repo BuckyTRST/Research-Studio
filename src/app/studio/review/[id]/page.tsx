@@ -107,6 +107,7 @@ export default function ReviewDetailPage() {
   if (!video) return <p className="p-6 text-[var(--muted)]">Loading video…</p>;
 
   const file = mediaName(video.file_path);
+  const thumb = mediaName(video.thumbnail_path);
 
   return (
     <div className="space-y-6">
@@ -120,7 +121,14 @@ export default function ReviewDetailPage() {
       <section className="grid gap-5 lg:grid-cols-[minmax(240px,360px)_1fr]">
         <div className="surface overflow-hidden rounded-[24px]">
           {file ? (
-            <video className="aspect-[9/16] w-full bg-black object-contain" controls src={`/api/media/${file}`} />
+            <video
+              className="aspect-[9/16] w-full bg-black object-contain"
+              controls
+              playsInline
+              preload="metadata"
+              poster={thumb ? `/api/media/${thumb}` : undefined}
+              src={`/api/media/${file}`}
+            />
           ) : (
             <div className="flex aspect-[9/16] items-center justify-center text-[var(--muted)]">No file</div>
           )}
